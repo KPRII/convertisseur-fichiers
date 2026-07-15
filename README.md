@@ -9,6 +9,7 @@ Un outil en ligne de commande simple pour convertir des fichiers, sans dépendre
 - **Audio** : conversion entre formats (MP3, WAV, OGG, FLAC)
 - **Vidéo** : conversion entre formats (MP4, AVI, MOV, MKV)
 - **Dossier entier** : convertit tous les fichiers d'un dossier d'un coup
+- **application graphique** : une application pour les personne en difficulté
 
 ## Installation
 
