@@ -1,12 +1,13 @@
 import argparse
 from pathlib import Path
 from images import convert_image
-from pdfs import merge_pdfs
+from pdfs import merge_pdfs, images_to_pdf, pdf_to_images
 from audio import convert_audio
 from video import convert_video
 
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".ogg", ".flac"}
 VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv"}
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 
 def convert_one(input_path: Path, output_path: Path):
     suffix = input_path.suffix.lower()
@@ -51,10 +52,15 @@ def main():
             return
 
     all_pdfs = all(p.suffix.lower() == ".pdf" for p in input_paths)
+    all_images = all(p.suffix.lower() in IMAGE_EXTENSIONS for p in input_paths)
 
     try:
         if output_path.suffix.lower() == ".pdf" and all_pdfs:
             merge_pdfs(input_paths, output_path)
+        elif output_path.suffix.lower() == ".pdf" and all_images:
+            images_to_pdf(input_paths, output_path)
+        elif input_paths[0].suffix.lower() == ".pdf" and output_path.suffix.lower() == "":
+            pdf_to_images(input_paths[0], output_path)
         else:
             convert_one(input_paths[0], output_path)
         print(f"Conversion reussie : {output_path}")

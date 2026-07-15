@@ -6,3 +6,6 @@ __pycache__/
 *.png
 *.mp4
 *.avi
+build/
+dist/
+*.spec  
