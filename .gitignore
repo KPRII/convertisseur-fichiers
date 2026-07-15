@@ -1,2 +1,8 @@
 __pycache__/
 *.pyc
+*.mp3
+*.wav
+*.jpg
+*.png
+*.mp4
+*.avi
