@@ -3,7 +3,7 @@ from pathlib import Path
 from images import convert_image
 from pdfs import merge_pdfs, images_to_pdf, pdf_to_images
 from audio import convert_audio
-from video import convert_video
+from video import convert_video, extract_audio
 
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".ogg", ".flac"}
 VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv"}
@@ -61,6 +61,8 @@ def main():
             images_to_pdf(input_paths, output_path)
         elif input_paths[0].suffix.lower() == ".pdf" and output_path.suffix.lower() == "":
             pdf_to_images(input_paths[0], output_path)
+        elif input_paths[0].suffix.lower() in VIDEO_EXTENSIONS and output_path.suffix.lower() in AUDIO_EXTENSIONS:
+            extract_audio(input_paths[0], output_path)
         else:
             convert_one(input_paths[0], output_path)
         print(f"Conversion reussie : {output_path}")
